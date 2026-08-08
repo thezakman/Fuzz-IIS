@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "iisfuzz"
+version = "2.0.0"
+description = "ASP.NET / IIS cookieless-session fuzzer and native access-control bypass tester"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "TheZakMan" }]
+keywords = [
+    "iis", "asp.net", "cookieless", "session-id", "fuzzing",
+    "security", "pentest", "waf-bypass", "access-control",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Security",
+]
+dependencies = [
+    "requests>=2.31",
+    "urllib3>=2.0",
+    "rich>=13.7",
+    "tomli>=2.0.1; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+iisfuzz = "iisfuzz.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/iisfuzz"]
